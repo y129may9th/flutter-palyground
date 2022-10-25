@@ -70,26 +70,42 @@ class _MyHomePageState extends State<MyHomePage> {
             style: Theme.of(context).textTheme.headline4,
           ),
           Container(
-            margin: const EdgeInsets.all(30),
-            padding: const EdgeInsets.all(20),
-            width: 200,
-            height: 100,
-            decoration: BoxDecoration(
-              // 枠線
-              border: Border.all(color: Colors.green, width: 5),
-
-              // 角丸
-              borderRadius: BorderRadius.circular(8),
-
-              // コンテナのカラー
-              color: Colors.pink[300],
-
-              // 背景画像
-              image: const DecorationImage(
-                image: NetworkImage('https://placehold.jp/100x100.png'),
+            color: Colors.blue,
+            child: Container(
+              margin: const EdgeInsets.all(30),
+              padding: const EdgeInsets.all(20),
+              width: 200,
+              height: 80,
+              decoration: BoxDecoration(
+                // 枠線
+                border: Border.all(
+                  color: Colors.green,
+                  width: 5,
+                ),
+                // 角丸
+                borderRadius: BorderRadius.circular(8),
+                // コンテナのカラー
+                color: Colors.pink[300],
+                // 背景画像
+                image: const DecorationImage(
+                  image: NetworkImage('https://placehold.jp/100x100.png'),
+                ),
+              ),
+              child: const Text(
+                'TextAlign.right',
+                textAlign: TextAlign.right,
               ),
             ),
-            child: const Text('TextAlign.right', textAlign: TextAlign.right),
+          ),
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 320.0, maxHeight: 64.0),
+            child: Container(
+              color: Colors.red,
+              child: const FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text("テキストテキストテキストテキストテキストテキスト"),
+              ),
+            ),
           ),
           Container(
             height: 125,

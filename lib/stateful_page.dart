@@ -20,6 +20,31 @@ class _NewWidgetState extends State<StatefulPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false, // デフォルトの戻るアイコンを削除
+        // leading: Icon(Icons.arrow_back_ios), // これだとただのアイコン設置。クリックとかはできない。
+        leadingWidth: 85,
+        leading: TextButton(
+          child: const Text(
+            '戻りたい...',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 12.0,
+            ),
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Stateful Widget'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.favorite),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          ),
+        ],
       ),
       body: Center(
         child: Center(
