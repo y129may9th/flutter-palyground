@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_provider/stateful_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -149,7 +150,20 @@ class _MyHomePageState extends State<MyHomePage> {
               subtitle: Text('subtitle'),
               trailing: Icon(Icons.more_vert),
             ),
-          )
+          ),
+          ElevatedButton(
+            onPressed: () {
+              // 指定した画面に遷移する
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  // 実際に表示するページ(ウィジェット)を指定する
+                  builder: (context) => StatefulPage(),
+                ),
+              );
+            },
+            child: Text('Next'),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
