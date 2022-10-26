@@ -33,13 +33,18 @@ class TodoIndexPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          // リスト追加画面から渡される値を受け取る
+          final newListText = await Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => TodoAddPage(),
             ),
           );
+          if (newListText != null) {
+            print(newListText);
+            // キャンセルした場合は newListText が null となるので注意
+          }
         },
         child: Icon(Icons.add),
       ),
@@ -88,9 +93,13 @@ class _TodoAddPageState extends State<TodoAddPage> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.yellow[700],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // "pop"で前の画面に戻る
+                    // "pop"の引数から前の画面にデータを渡す
+                    Navigator.of(context).pop(_text);
+                  },
                   child: const Text(
-                    'リスト追加画面',
+                    'リスト追加',
                     style: TextStyle(
                       color: Colors.white,
                     ),
