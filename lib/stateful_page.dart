@@ -64,6 +64,19 @@ class _NewWidgetState extends State<StatefulPage> {
                 },
                 child: const Text('カウントアップ'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  // 指定した画面に遷移する
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      // 実際に表示するページ(ウィジェット)を指定する
+                      builder: (context) => TodoIndexPage(),
+                    ),
+                  );
+                },
+                child: Text('TODO Page'),
+              ),
             ],
           ),
         ),
