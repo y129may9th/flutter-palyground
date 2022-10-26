@@ -1,48 +1,47 @@
 import 'package:flutter/material.dart';
 
-class TodoIndexPage extends StatelessWidget {
+class TodoIndexPage extends StatefulWidget {
+  @override
+  _TodoIndexPageState createState() => _TodoIndexPageState();
+}
+
+class _TodoIndexPageState extends State<TodoIndexPage> {
+  List<String> todoList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('リスト一覧'),
       ),
-      body: ListView(
-        children: const <Widget>[
-          Card(
+      body: ListView.builder(
+        itemCount: todoList.length,
+        itemBuilder: (context, index) {
+          return Card(
             child: ListTile(
-              title: Text('ニンジンを買う'),
+              title: Text(todoList[index]),
             ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('タマネギを買う'),
-              tileColor: Colors.blueGrey,
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('ジャガイモを買う'),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: Text('カレールーを買う'),
-            ),
-          ),
-        ],
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
+        // "push"で新規画面に遷移
+        // リスト追加画面から渡される値を受け取る
         onPressed: () async {
           // リスト追加画面から渡される値を受け取る
           final newListText = await Navigator.push(
             context,
             MaterialPageRoute(
+              // 遷移先の画面としてリスト追加画面を指定
               builder: (context) => TodoAddPage(),
             ),
           );
           if (newListText != null) {
             print(newListText);
+            setState(() {
+              // リスト追加されたのを検知して、描画に更新が入る
+              todoList.add(newListText);
+            });
             // キャンセルした場合は newListText が null となるので注意
           }
         },
