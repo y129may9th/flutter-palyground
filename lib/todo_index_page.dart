@@ -47,7 +47,14 @@ class TodoIndexPage extends StatelessWidget {
   }
 }
 
-class TodoAddPage extends StatelessWidget {
+class TodoAddPage extends StatefulWidget {
+  @override
+  _TodoAddPageState createState() => _TodoAddPageState();
+}
+
+class _TodoAddPageState extends State<TodoAddPage> {
+  String _text = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +66,19 @@ class TodoAddPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextField(),
+              Text(
+                _text,
+                style: const TextStyle(color: Colors.blue),
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                onChanged: (String value) {
+                  // データが変更したことを知らせる（画面を更新する）
+                  setState(() {
+                    _text = value;
+                  });
+                },
+              ),
               const SizedBox(height: 8),
               Container(
                 // 横幅いっぱいに広げる
